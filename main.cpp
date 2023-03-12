@@ -2,6 +2,7 @@
 // Created by Octavian Farcasi on 11.03.2023.
 //
 #include <iostream>
+#include<cstring>
 class Jocuri{
 private:
     bool multiplayer,indicator;
