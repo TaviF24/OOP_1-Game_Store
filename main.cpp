@@ -86,10 +86,7 @@ public:
             delete [] nume;
             delete [] categorie;
             delete [] sis_op;
-            std::cout<<"des";
         }
-        std::cout<<"tructor\n";
-
     }
 
     void setSpatiu(const int *spatiu_nou){
@@ -146,7 +143,7 @@ public:
         indicator=indicator_nou;
     }
 
-    bool operator==( Jocuri &obiect){
+    bool operator==(const Jocuri &obiect){
         return strcmp(nume,obiect.nume)==0 && strcmp(categorie,obiect.categorie)==0
                && strcmp(sis_op,obiect.sis_op)==0 && *spatiu_ocupat==*obiect.spatiu_ocupat && *pret==*obiect.pret
                && multiplayer==obiect.multiplayer;
@@ -196,50 +193,44 @@ public:
         return ob_in;
     }
 
-    friend std::ostream &operator<<(std::ostream &ob_out, Jocuri &obiect) {
+    friend std::ostream &operator<<(std::ostream &ob_out,const Jocuri &obiect) {
         std::cout<<"Nume joc: ";
         if(strcmp(obiect.nume,"")==0)
             std::cout<<"Nu ati introdus numele";
         else
-            std::cout<<obiect.nume;
+            std::cout<<obiect.getNume();
         std::cout<<"\nCategorie: ";
 
         if(strcmp(obiect.categorie,"")==0)
             std::cout<<"Nu ati introdus categoria";
         else
-            std::cout<<obiect.categorie;
+            std::cout<<obiect.getCategorie();
         std::cout<<"\nSisteme compatibilie: ";
 
         if(strcmp(obiect.sis_op,"")==0)
             std::cout<<"Nu ati introdus sistemele compatibile";
         else
-            std::cout<<obiect.sis_op;
+            std::cout<<obiect.getSis_Op();
         std::cout<<"\nSpatiu necesar: ";
 
         if(*obiect.spatiu_ocupat==-1)
             std::cout<<"Nu ati introdus spatiul";
         else
-            std::cout<<*obiect.spatiu_ocupat<<"GB";
+            std::cout<<obiect.getSpatiu()<<"GB";
         std::cout<<"\nPret: ";
 
         if(*obiect.pret==-1)
             std::cout<<"Nu ati introdus pretul";
         else
-            std::cout<<*obiect.pret<<"€";
+            std::cout<<obiect.getPret()<<"€";
 
         std::cout<<"\nMultiplayer: ";
-        if (obiect.multiplayer==1)
+        if (obiect.getMultiplayer()==1)
             ob_out<<"Da\n";
         else
             ob_out<<"Nu\n";
         return ob_out;
     }
-
-
-    void afis()const{
-        std::cout<<nume<<" "<<categorie<<" "<<sis_op<<" "<<*spatiu_ocupat<<" "<<*pret<<" "<<multiplayer<<"\n";
-    }
-
 
 };
 
@@ -255,11 +246,10 @@ void start(){
 
     std::cin>>x;
     if(x==1){
-        //Jocuri *v_cel_mai=new Jocuri[dimensiune];
         Jocuri *v_bun=new Jocuri[dimensiune];
         v_bun[0]=Jocuri();
         while(x!=2){
-            std::cout<<"Doriti sa adaugati un nou element?\nDA: Apasati 1\nNU: Apasati 2\n";
+            std::cout<<"Doriti sa adaugati un nou joc?\nDA: Apasati 1\nNU: Apasati 2\n";
             std::cin>>x;
             if(x==1){
                 if(dimensiune!=0) {
@@ -271,7 +261,6 @@ void start(){
                         v_bun[i].setIndicator(true);
                         v_bun[i].~Jocuri();
                     }
-                    //delete [] v_bun;
                     v_bun=new Jocuri[dimensiune+1];
                     for (int i = 0; i < dimensiune; i++)
                         v_bun[i] = v_copie[i];
@@ -280,11 +269,7 @@ void start(){
                         v_copie[i].setIndicator(true);
                         v_copie[i].~Jocuri();
                     }
-                    //delete [] v_copie;
                 }
-//                else{
-//                    v_bun[0]=Jocuri();
-//                }
                 v_bun[dimensiune]=Jocuri();
 
                 std::cout<<"Nume= tastati 3\n";
@@ -341,7 +326,7 @@ void start(){
             }
         }
         if(dimensiune!=0){
-            std::cout<<"\nDoriti sa modicati vreun joc?\nDA: Apasati 1\nNU: Apasati 2\n";
+            std::cout<<"\nDoriti sa modicati vreun joc?\nDA: Apasati 1\nNU,TERMINATI: Apasati 2\n";
             std::cin>>x;
             while(x!=2){
                 int i,indice=1;
@@ -350,6 +335,7 @@ void start(){
                     std::cout<<"Jocul "<<i+1<<" "<<v_bun[i].getNume()<<"\n";
                 }
                 std::cin>>i;i--;
+                std::cout<<"Datele curente sunt:\n"<<v_bun[i]<<"\n"<<"Pentru a modifica, urmati instructiunile:\n";
                 std::cout<<"Nume= tastati 3\n";
                 std::cout<<"Categorie= tastati 4\n";
                 std::cout<<"Sistem de operare= tastati 5\n";
@@ -399,9 +385,7 @@ void start(){
         }
 
     }
-
     std::cout<<"SFARSIT";
-
 }
 
 
@@ -409,9 +393,9 @@ void start(){
 int main() {
 
     start();
-
+    int nr=5,*p=&nr;
+    char ajutor[]="",*ptr=ajutor;
+    Jocuri A(ptr,ptr,ptr,p,p,nr, true);
     return 0;
 }
-// nume, categorie, spatiu ocupat, pret, sistem de operare compatibil, multiplayer/singleplayer
-
 
