@@ -143,12 +143,12 @@ public:
         indicator=indicator_nou;
     }
 
-    bool operator==(const Jocuri &obiect){
+    bool operator==(const Jocuri &obiect) const{
         return strcmp(nume,obiect.nume)==0 && strcmp(categorie,obiect.categorie)==0
                && strcmp(sis_op,obiect.sis_op)==0 && *spatiu_ocupat==*obiect.spatiu_ocupat && *pret==*obiect.pret
                && multiplayer==obiect.multiplayer;
     }
-    bool operator!=(const Jocuri &obiect){
+    bool operator!=(const Jocuri &obiect) const{
         return strcmp(nume,obiect.nume)!=0 || strcmp(categorie,obiect.categorie)!=0
                || strcmp(sis_op,obiect.sis_op)!=0 || *spatiu_ocupat!=*obiect.spatiu_ocupat || *pret!=*obiect.pret
                || multiplayer!=obiect.multiplayer;
