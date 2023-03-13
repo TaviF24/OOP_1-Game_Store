@@ -10,11 +10,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # By default, treat warnings as errors; override via cmake defines or via env vars
 if(DEFINED WARNINGS_AS_ERRORS)
-  # do nothing, already defined
+    # do nothing, already defined
 elseif(DEFINED ENV{WARNINGS_AS_ERRORS})
-  set(WARNINGS_AS_ERRORS $ENV{WARNINGS_AS_ERRORS})
+    set(WARNINGS_AS_ERRORS $ENV{WARNINGS_AS_ERRORS})
 else()
-  set(WARNINGS_AS_ERRORS ON)
+    set(WARNINGS_AS_ERRORS ON)
 endif()
 
 ###############################################################################
@@ -42,13 +42,14 @@ endif()
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
 add_executable(${PROJECT_NAME} main.cpp)
+
 ###############################################################################
 
 # target definitions
 
 if(GITHUB_ACTIONS)
-  message("NOTE: GITHUB_ACTIONS defined")
-  target_compile_definitions(${PROJECT_NAME} PRIVATE GITHUB_ACTIONS)
+    message("NOTE: GITHUB_ACTIONS defined")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE GITHUB_ACTIONS)
 endif()
 
 ###############################################################################
@@ -58,12 +59,12 @@ message("Compiler: ${CMAKE_CXX_COMPILER_ID} version ${CMAKE_CXX_COMPILER_VERSION
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /permissive- /wd4244 /wd4267 /wd4996 /external:anglebrackets /external:W0)
     if(WARNINGS_AS_ERRORS)
-      target_compile_options(${PROJECT_NAME} PRIVATE /WX)
+        target_compile_options(${PROJECT_NAME} PRIVATE /WX)
     endif()
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
     if(WARNINGS_AS_ERRORS)
-      target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
+        target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
     endif()
 
     if("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
