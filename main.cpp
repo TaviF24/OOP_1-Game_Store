@@ -242,7 +242,7 @@ void start(){
     int spatiu_ocupat, pret, x;
 
     std::cin>>x;
-    std::cin.get();
+    //std::cin.get();
     if(x==1){
         int dimensiune=0;
         Jocuri *v_bun=new Jocuri[dimensiune];
@@ -250,7 +250,7 @@ void start(){
         while(x!=2){
             std::cout<<"Doriti sa adaugati un nou joc?\nDA: Apasati 1\nNU: Apasati 2\n";
             std::cin>>x;
-            std::cin.get();
+            //std::cin.get();
             if(x==1){
                 if(dimensiune!=0) {
                     Jocuri *v_copie = new Jocuri[dimensiune];
