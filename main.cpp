@@ -143,12 +143,12 @@ public:
         indicator=indicator_nou;
     }
 
-    bool operator==(const Jocuri &obiect)const{
+    bool operator==(const Jocuri &obiect){
         return strcmp(nume,obiect.nume)==0 && strcmp(categorie,obiect.categorie)==0
                && strcmp(sis_op,obiect.sis_op)==0 && *spatiu_ocupat==*obiect.spatiu_ocupat && *pret==*obiect.pret
                && multiplayer==obiect.multiplayer;
     }
-    bool operator!=(const Jocuri &obiect)const{
+    bool operator!=(const Jocuri &obiect){
         return strcmp(nume,obiect.nume)!=0 || strcmp(categorie,obiect.categorie)!=0
                || strcmp(sis_op,obiect.sis_op)!=0 || *spatiu_ocupat!=*obiect.spatiu_ocupat || *pret!=*obiect.pret
                || multiplayer!=obiect.multiplayer;
@@ -239,18 +239,18 @@ void start(){
     std::cout<<"\nSTART: APASATI 1\n";
     std::cout<<"EXIT: APASATI 2\n"<<"\n";
 
-    bool multiplayer;
-    int spatiu_ocupat, pret, x, dimensiune=0;
-    char nume[50], categorie[50], sis_op[50];
-
+    int spatiu_ocupat, pret, x;
 
     std::cin>>x;
+    std::cin.get();
     if(x==1){
+        int dimensiune=0;
         Jocuri *v_bun=new Jocuri[dimensiune];
         v_bun[0]=Jocuri();
         while(x!=2){
             std::cout<<"Doriti sa adaugati un nou joc?\nDA: Apasati 1\nNU: Apasati 2\n";
             std::cin>>x;
+            std::cin.get();
             if(x==1){
                 if(dimensiune!=0) {
                     Jocuri *v_copie = new Jocuri[dimensiune];
@@ -282,16 +282,21 @@ void start(){
 
                 int indice;
                 std::cin>>indice;
+                std::cin.get();
+
                 while(indice!=9){
                     if(indice==3) {
+                        char nume[255];
                         std::cout<<"Nume= "; std::cin >> nume;
                         v_bun[dimensiune].setNume(nume);
                     }
                     if(indice==4){
+                        char categorie[255];
                         std::cout<<"Categorie= ";std::cin>>categorie;
                         v_bun[dimensiune].setCategorie(categorie);
                     }
                     if(indice==5){
+                        char sis_op[255];
                         std::cout<<"Sistem de operare= ";std::cin >> sis_op;
                         v_bun[dimensiune].setSis_Op(sis_op);
 
@@ -305,10 +310,12 @@ void start(){
                         v_bun[dimensiune].setPret(&pret);
                     }
                     if(indice==8){
-                        std::cout<<"Multiplayer=";std::cin>>multiplayer;
+                        bool multiplayer;
+                        std::cout<<"Multiplayer(DA=1, NU=0)=";std::cin>>multiplayer;
                         v_bun[dimensiune].setMultiplayer(multiplayer);
                     }
                     std::cin>>indice;
+                    std::cin.get();
                 }
                 int ok=0;
                 for(int i=0;i<dimensiune;i++){
@@ -328,6 +335,7 @@ void start(){
         if(dimensiune!=0){
             std::cout<<"\nDoriti sa modicati vreun joc?\nDA: Apasati 1\nNU,TERMINATI: Apasati 2\n";
             std::cin>>x;
+            std::cin.get();
             while(x!=2){
                 int i,indice=1;
                 std::cout<<"Alegeti jocul:\n";
@@ -344,16 +352,20 @@ void start(){
                 std::cout<<"Multiplayer= tastati 8\n";
                 std::cout<<"Daca doriti sa va opriti, apasati 9\n";
                 std::cin>>indice;
+                std::cin.get();
                 while(indice!=9){
                     if(indice==3) {
+                        char nume[255];
                         std::cout<<"Nume= "; std::cin >> nume;
                         v_bun[i].setNume(nume);
                     }
                     if(indice==4){
+                        char categorie[255];
                         std::cout<<"Categorie= ";std::cin>>categorie;
                         v_bun[i].setCategorie(categorie);
                     }
                     if(indice==5){
+                        char sis_op[255];
                         std::cout<<"Sistem de operare= ";std::cin >> sis_op;
                         v_bun[i].setSis_Op(sis_op);
 
@@ -367,14 +379,18 @@ void start(){
                         v_bun[i].setPret(&pret);
                     }
                     if(indice==8){
-                        std::cout<<"Multiplayer=";std::cin>>multiplayer;
+                        bool multiplayer;
+                        std::cout<<"Multiplayer(DA=1,NU=0)=";std::cin>>multiplayer;
                         v_bun[i].setMultiplayer(multiplayer);
                     }
                     std::cin>>indice;
+                    std::cin.get();
                 }
 
                 std::cout<<"Daca nu mai modificati vreun joc, apasati 2, altfel apasati 3\n";
                 std::cin>>x;
+                std::cin.get();
+
             }
         }
 
