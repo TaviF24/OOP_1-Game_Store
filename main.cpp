@@ -239,7 +239,7 @@ void start(){
     std::cout<<"\nSTART: APASATI 1\n";
     std::cout<<"EXIT: APASATI 2\n"<<"\n";
 
-    int spatiu_ocupat, pret, x;
+    int spatiu_ocupat, pret, x = 1;
 
     std::cin>>x;
     std::cin.get();
