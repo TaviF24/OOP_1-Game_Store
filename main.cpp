@@ -409,10 +409,10 @@ void start(){
 
 
 int main() {
-    int x = 5;
-    std::cin >> x;
-    if(x == 5)
-        return 0;
+    //int x = 5;
+   // std::cin >> x;
+//    if(x == 5)
+//        return 0;
     start();
     int nr=5,*p=&nr;
     char ajutor[]="",*ptr=ajutor;
