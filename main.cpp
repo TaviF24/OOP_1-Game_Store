@@ -410,7 +410,7 @@ void start(){
 
 int main() {
     int x = 1;
-    //std::cin >> x;
+    std::cin >> x;
     if(x == 1)
         return 0;
     start();
