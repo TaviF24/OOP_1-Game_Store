@@ -256,19 +256,21 @@ void start(){
                     Jocuri *v_copie = new Jocuri[dimensiune];
                     for (int i = 0; i < dimensiune; i++)
                         v_copie[i] = v_bun[i];
-                    for (int i = 0; i < dimensiune; i++)
-                    {
-                        v_bun[i].setIndicator(true);
-                        v_bun[i].~Jocuri();
-                    }
+//                    for (int i = 0; i < dimensiune; i++)
+//                    {
+//                        v_bun[i].setIndicator(true);
+//                        v_bun[i].~Jocuri();
+//                    }
+                    delete [] v_bun;
                     v_bun=new Jocuri[dimensiune+1];
                     for (int i = 0; i < dimensiune; i++)
                         v_bun[i] = v_copie[i];
-                    for (int i = 0; i < dimensiune; i++)
-                    {
-                        v_copie[i].setIndicator(true);
-                        v_copie[i].~Jocuri();
-                    }
+//                    for (int i = 0; i < dimensiune; i++)
+//                    {
+//                        v_copie[i].setIndicator(true);
+//                        v_copie[i].~Jocuri();
+//                    }
+                    delete [] v_copie;
                 }
                 v_bun[dimensiune]=Jocuri();
 
