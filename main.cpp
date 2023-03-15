@@ -154,7 +154,7 @@ public:
                || multiplayer!=obiect.multiplayer;
     }
 
-    Jocuri operator=(const Jocuri &obiect){
+    Jocuri &operator=(const Jocuri &obiect){
         if(this!=&obiect){
             setNume(obiect.nume);
             setCategorie(obiect.categorie);
@@ -242,7 +242,7 @@ void start(){
     int spatiu_ocupat, pret, x;
 
     std::cin>>x;
-    //std::cin.get();
+    std::cin.get();
     if(x==1){
         int dimensiune=0;
         Jocuri *v_bun=new Jocuri[dimensiune];
@@ -409,10 +409,6 @@ void start(){
 
 
 int main() {
-    int x = 1;
-    std::cin >> x;
-    if(x == 1)
-        return 0;
     start();
     int nr=5,*p=&nr;
     char ajutor[]="",*ptr=ajutor;
