@@ -16,5 +16,5 @@ In this project, I had to hit different points:
 
 ## What I used
 - MacOS
-- Clion 2022.3.2
+- CLion 2022.3.2
 - C++
